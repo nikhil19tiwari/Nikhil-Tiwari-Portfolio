@@ -1,0 +1,19 @@
+# robots.txt for Nikhil Tiwari Portfolio
+
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /temp/
+
+# Sitemap location
+Sitemap: https://nikhiltiwari.dev/sitemap.xml
+
+# Crawl-delay for specific bots
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 2
+
+# Host directive
+Host: https://nikhiltiwari.dev
