@@ -127,15 +127,15 @@ const Hero = () => {
               {/* Main image container */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl transform hover:scale-105 transition-transform duration-500">
                 {/* Replace with your actual image */}
-                <img 
-                  src="/src/assets/profile-photo.jpg" 
-                  alt="Nikhil Tiwari - Software Developer"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://via.placeholder.com/400x400?text=Nikhil+Tiwari';
-                  }}
-                />
+              <img 
+  src="/images/profile-photo.jpg"    
+  alt="Nikhil Tiwari - Software Developer"
+  className="w-full h-full object-cover"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = 'https://via.placeholder.com/400x400?text=Nikhil+Tiwari';
+  }}
+/>
                 
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/50 via-purple-600/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
