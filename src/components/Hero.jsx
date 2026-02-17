@@ -128,7 +128,7 @@ const Hero = () => {
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl transform hover:scale-105 transition-transform duration-500">
                 {/* Replace with your actual image */}
               <img 
-  src="/images/profile-photo.jpg"    
+  src="/images/profile-photo.png"    
   alt="Nikhil Tiwari - Software Developer"
   className="w-full h-full object-cover"
   onError={(e) => {
