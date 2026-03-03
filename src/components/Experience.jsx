@@ -15,7 +15,7 @@ const Experience = () => {
     },
     {
       title: "Junior Software Developer",
-      company: "TEXOSMART",
+      company: "TAX-O-SMART",
       period: "May 2025 - Dec 2025",
       description: [
         "Developed and maintained Java applications",
