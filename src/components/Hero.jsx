@@ -99,13 +99,13 @@ const Hero = () => {
                 </div>
               </a>
 
-              {/* GFG - GeeksforGeeks */}
+              {/*Leetcode */}
               <a 
-                href="https://www.geeksforgeeks.org/profile/nikhil19wxqo" 
+                href="https://leetcode.com/u/FNRLVpYc7k/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="group relative"
-                title="GeeksforGeeks"
+                title="LeetCode"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 <div className="relative p-2 bg-gray-100 dark:bg-gray-800 rounded-full group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
@@ -114,6 +114,28 @@ const Hero = () => {
                   </svg>
                 </div>
               </a>
+              {/* Medium */}
+<a 
+  href="https://medium.com/@nikhil19tiwari" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="group relative"
+  title="Medium"
+>
+  <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-black rounded-full opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
+  
+  <div className="relative p-2 bg-gray-100 dark:bg-gray-800 rounded-full group-hover:bg-gradient-to-r group-hover:from-green-600 group-hover:to-black transition-all duration-300">
+    
+    <svg 
+      className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-white" 
+      viewBox="0 0 24 24" 
+      fill="currentColor"
+    >
+      <path d="M2 6.5c0-.3.2-.5.5-.5h4.7l5.3 8.9L18 6h4.5c.3 0 .5.2.5.5v11c0 .3-.2.5-.5.5H18c-.3 0-.5-.2-.5-.5v-7.8l-5.3 8.7h-.3L6.5 9.7v7.8c0 .3-.2.5-.5.5H2.5c-.3 0-.5-.2-.5-.5v-11z"/>
+    </svg>
+
+  </div>
+</a>
             </div>
           </div>
 
@@ -150,7 +172,7 @@ const Hero = () => {
               {/* Experience badge */}
               <div className="absolute top-8 -right-2 bg-white dark:bg-gray-800 rounded-full px-4 py-2 shadow-xl transform hover:scale-110 transition-transform duration-300">
                 <div className="flex items-center space-x-2">
-                  <span className="text-2xl">🚀</span>
+                  <span className="text-2xl"></span>
                   <div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">Experience</div>
                     <div className="text-sm font-bold text-gray-900 dark:text-white">1+ Year</div>

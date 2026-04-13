@@ -28,12 +28,12 @@ const Navbar = () => {
   }, [])
 
   const navItems = [
-    { name: 'Home', href: '#home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-    { name: 'About', href: '#about', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
-    { name: 'Skills', href: '#skills', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
-    { name: 'Experience', href: '#experience', icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
-    { name: 'Projects', href: '#projects', icon: 'M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z' },
-    { name: 'Contact', href: '#contact', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
   ]
 
   const handleNavClick = (e, href) => {
@@ -56,16 +56,15 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with gradient and animation */}
-          <div className="flex-shrink-0 group">
+          {/* Logo */}
+          <div className="flex-shrink-0">
             <a 
               href="#home" 
               onClick={(e) => handleNavClick(e, '#home')}
-              className="relative block"
+              className="flex items-center space-x-2"
             >
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-500 group-hover:duration-200 animate-pulse"></div>
-              <div className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full transform group-hover:scale-110 transition-all duration-300 shadow-lg">
-                <span className="text-xl font-bold text-white transform group-hover:rotate-12 transition-transform duration-300">
+              <div className="flex items-center justify-center w-10 h-10 bg-indigo-600 rounded-lg shadow-sm">
+                <span className="text-xl font-bold text-white tracking-widest">
                   NT
                 </span>
               </div>
@@ -82,32 +81,17 @@ const Navbar = () => {
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`relative group px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                    className={`relative group px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                       isActive
-                        ? 'text-blue-600 dark:text-blue-400'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                        ? 'text-indigo-600 dark:text-indigo-400'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400'
                     }`}
                   >
-                    <span className="relative z-10 flex items-center space-x-2">
-                      <svg 
-                        className="w-4 h-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
-                      </svg>
-                      <span>{item.name}</span>
-                    </span>
+                    <span className="relative z-10">{item.name}</span>
                     
-                    {/* Animated background on hover */}
-                    <span className={`absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 scale-0 group-hover:scale-100 transition-transform duration-300 origin-left ${
-                      isActive ? 'scale-100 bg-blue-500/10' : ''
-                    }`}></span>
-                    
-                    {/* Animated underline */}
-                    <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 ${
-                      isActive ? 'w-full' : ''
+                    {/* Minimalist underline */}
+                    <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-indigo-600 dark:bg-indigo-400 transform origin-left transition-transform duration-300 ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}></span>
                   </a>
                 )
@@ -155,27 +139,13 @@ const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transform transition-all duration-300 hover:scale-105 ${
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
                   activeLink === item.href.substring(1)
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-purple-500/30'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10'
+                    ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                 }`}
-                style={{ animationDelay: `${index * 50}ms` }}
               >
-                <svg 
-                  className="w-5 h-5" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
-                </svg>
                 <span>{item.name}</span>
-                {activeLink === item.href.substring(1) && (
-                  <svg className="w-5 h-5 ml-auto animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                )}
               </a>
             ))}
           </div>
