@@ -15,7 +15,7 @@ const About = () => {
               Who is Nikhil Tiwari?
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              I'm a passionate Software Developer with 1+ year of experience in building 
+              I'm a passionate Software Developer with 2 year of experience in building 
               robust and scalable applications. My expertise lies in Java development, 
               Microservices architecture, and System Design (both Low Level and High Level).
             </p>
