@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react'
-import { HelmetProvider } from 'react-helmet-async'
+import { MotionConfig } from 'framer-motion'
+import { useTheme } from './hooks'
+import Background from './components/Background'
+import ScrollProgress from './components/ScrollProgress'
+import Loader from './components/Loader'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -8,32 +11,24 @@ import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import SEO from './components/SEO'
 
-function App() {
-  useEffect(() => {
-    // Update document title with name for better SEO
-    document.title = "Nikhil Tiwari - Software Developer | Java | Microservices | Spring Boot"
-  }, [])
-
+export default function App() {
+  const [theme, toggle] = useTheme()
   return (
-    <HelmetProvider>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <SEO />
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          
-          <Contact />
-        </main>
-        <Footer />
-      </div>
-    </HelmetProvider>
+    <MotionConfig reducedMotion="user">
+      <Background />
+      <ScrollProgress />
+      <Loader />
+      <Navbar theme={theme} toggle={toggle} />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+    </MotionConfig>
   )
 }
-
-export default App

@@ -1,68 +1,63 @@
-import React from 'react'
+import { motion } from 'framer-motion'
+import { SKILLS } from '../data'
+import { SectionHeading, Reveal, SpotlightCard } from './ui'
 
-const Skills = () => {
-  const skillCategories = [
-    {
-      title: "Languages",
-      skills: ["Java", "SQL", "JavaScript", "TypeScript"]
-    },
-    {
-      title: "Frameworks & Libraries",
-      skills: ["Spring Boot", "Spring Cloud", "Hibernate", "React.js"]
-    },
-    {
-      title: "Microservices & Architecture",
-      skills: ["Microservices", "REST APIs", "LLD", "HLD", "System Design"]
-    },
-    {
-      title: "Databases",
-      skills: ["MySQL", "PostgreSQL", "MongoDB", "Redis"]
-    },
-    {
-      title: "DevOps & Tools",
-      skills: ["Git", "Docker", "Kubernetes", "Jenkins", "Maven", "Gradle"]
-    },
-    {
-      title: "DSA & Problem Solving",
-      skills: ["Data Structures", "Algorithms", "LeetCode", "GFG"]
-    }
-  ]
+const all = SKILLS.flatMap((s) => s.items)
+const rowA = all.slice(0, Math.ceil(all.length / 2))
+const rowB = all.slice(Math.ceil(all.length / 2))
 
+function Marquee({ items, reverse }) {
+  const list = [...items, ...items, ...items, ...items]
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Technical Skills
-          </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
-          <p className="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
-            A comprehensive overview of my technical expertise and tools I work with
-          </p>
-        </div>
+    <div className="marquee-mask overflow-hidden py-2">
+      <div className={`marquee ${reverse ? 'marquee-rev' : ''}`}>
+        {list.map((t, i) => (
+          <span key={i} className="whitespace-nowrap rounded-full border border-line bg-card px-6 py-3 font-display text-lg font-semibold text-fg backdrop-blur">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+export default function Skills() {
+  return (
+    <section id="skills" aria-labelledby="skills-title" className="relative py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <SectionHeading id="skills-title" index="02" eyebrow="skills" title="Tech I work with" />
+      </div>
+
+      <div aria-hidden="true" className="mb-16 space-y-3">
+        <Marquee items={rowA} />
+        <Marquee items={rowB} reverse />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {SKILLS.map((cat, i) => (
+            <Reveal key={cat.title} delay={(i % 3) * 0.08}>
+              <SpotlightCard className="h-full p-6">
+                <h3 className="font-display text-xl font-semibold text-fg">{cat.title}</h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {cat.items.map((s, j) => (
+                    <motion.li
+                      key={s}
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + j * 0.05, type: 'spring', stiffness: 260, damping: 18 }}
+                      className="rounded-lg border border-accent/25 bg-accent/10 px-3 py-1 text-sm font-medium text-accent"
+                    >
+                      {s}
+                    </motion.li>
+                  ))}
+                </ul>
+              </SpotlightCard>
+            </Reveal>
           ))}
         </div>
       </div>
     </section>
   )
 }
-
-export default Skills

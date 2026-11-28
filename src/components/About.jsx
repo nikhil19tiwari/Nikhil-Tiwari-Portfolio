@@ -1,67 +1,57 @@
-import React from 'react'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { ABOUT_TEXT, HIGHLIGHT, FACTS, STATS } from '../data'
+import { SectionHeading, Reveal, SpotlightCard, Counter } from './ui'
 
-const About = () => {
+function Word({ children, range, progress, hot }) {
+  const o = useTransform(progress, range, [0.16, 1])
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              Who is Nikhil Tiwari?
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              I'm a passionate Software Developer with 2 year of experience in building 
-              robust and scalable applications. My expertise lies in Java development, 
-              Microservices architecture, and System Design (both Low Level and High Level).
-            </p>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              I have a strong foundation in Data Structures and Algorithms, having solved 
-              300+ problems on LeetCode and GeeksforGeeks. I believe in writing clean, 
-              maintainable code and following best practices in software development.
-            </p>
-            <p className="text-gray-600 dark:text-gray-400">
-              Currently, I'm focused on mastering cloud technologies and expanding my 
-                knowledge in distributed systems. I'm always eager to learn new technologies 
-              and take on challenging problems.
-            </p>
-          </div>
-          
-          <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Quick Facts
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">•</span>
-                <span className="text-gray-700 dark:text-gray-300">🎓 Information Technology Graduate</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">•</span>
-                <span className="text-gray-700 dark:text-gray-300">💼 1+ Year Experience in Software Development</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">•</span>
-                <span className="text-gray-700 dark:text-gray-300">🚀 3+  Projects on GitHub</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">•</span>
-                <span className="text-gray-700 dark:text-gray-300">📊 300+ DSA Problems Solved</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">•</span>
-                <span className="text-gray-700 dark:text-gray-300">🏆 Completed 2 Advanced Courses</span>
-              </li>
-            </ul>
+    <motion.span style={{ opacity: o }} className={`mr-[0.28em] inline-block ${hot ? 'font-semibold text-accent' : 'text-fg'}`}>
+      {children}
+    </motion.span>
+  )
+}
+
+export default function About() {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.85', 'end 0.55'] })
+  const words = ABOUT_TEXT.split(' ')
+  return (
+    <section id="about" aria-labelledby="about-title" className="relative py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <SectionHeading id="about-title" index="01" eyebrow="about" title="Who is Nikhil Tiwari?" />
+
+        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
+          <p ref={ref} className="font-display text-2xl font-medium leading-snug sm:text-3xl">
+            {words.map((w, i) => (
+              <Word key={i} range={[i / words.length, Math.min(1, (i + 1.5) / words.length)]} progress={scrollYProgress} hot={HIGHLIGHT.includes(w)}>
+                {w}
+              </Word>
+            ))}
+          </p>
+
+          <div className="grid gap-4">
+            <div className="grid grid-cols-3 gap-3">
+              {STATS.map((s, i) => (
+                <Reveal key={s.label} delay={i * 0.08}>
+                  <SpotlightCard className="p-4 text-center">
+                    <div className="font-display text-3xl font-bold text-fg"><Counter to={s.value} suffix={s.suffix} /></div>
+                    <div className="mt-1 text-[11px] leading-tight text-muted">{s.label}</div>
+                  </SpotlightCard>
+                </Reveal>
+              ))}
+            </div>
+            {FACTS.map((f, i) => (
+              <Reveal key={f.k} delay={0.1 + i * 0.08}>
+                <SpotlightCard className="p-5">
+                  <p className="font-mono text-xs uppercase tracking-wider text-accent">{f.k}</p>
+                  <p className="mt-1 text-fg">{f.v}</p>
+                </SpotlightCard>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>
     </section>
   )
 }
-
-export default About
